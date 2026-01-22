@@ -1,21 +1,29 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-
+import { useNavigate } from "react-router-dom";
 import {loginSchema,type LoginSchema} from '../schemas/login'
 import { loginInputs } from "../constants/loginInputs";
+import axios from "axios";
 const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    
-    formState:{errors,isSubmitting}
+    formState:{errors,isSubmitting},
+    setError
   } = useForm<LoginSchema>({resolver:zodResolver(loginSchema)})
   const onSubmit = async(data:LoginSchema) => {
     try {
-      console.log(data)
+      const response = await axios.post("http://localhost:3000/api/users/login",data)
+      if(response.data) {
+        localStorage.setItem('user',JSON.stringify(response.data));
+        navigate('/')
+      }
     } catch (error) {
-      console.log(error)
+      if(axios.isAxiosError(error)) {
+        const message = error.response?.data?.message || 'Login failed'
+        setError('root',{message})
+      }
     }
   }
   const inputclasses =
