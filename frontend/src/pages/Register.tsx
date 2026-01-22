@@ -35,7 +35,6 @@ const Register = () => {
       if (message === "User already exists" || message?.includes("exists")) {
           setError("email", { type: "server", message: message });
         } else {
-           // სხვა ზოგადი ერორი (შეგიძლია alert გამოიყენო ან ცალკე ველში გამოიტანო)
            alert(message || "Something went wrong");
         }
      }
