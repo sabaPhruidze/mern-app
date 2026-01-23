@@ -3,28 +3,33 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import {loginSchema,type LoginSchema} from '../schemas/login'
 import { loginInputs } from "../constants/loginInputs";
-import axios from "axios";
+import { useAppDispatch,useAppSelector } from "../store/store";
+import {login,reset} from '../store/slices/authSlice'
+import { useEffect } from "react";
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const {isLoading,isError,isSuccess,message} = useAppSelector(state => state.auth)
   const {
     register,
     handleSubmit,
-    formState:{errors,isSubmitting},
+    formState:{errors},
     setError
-  } = useForm<LoginSchema>({resolver:zodResolver(loginSchema)})
-  const onSubmit = async(data:LoginSchema) => {
-    try {
-      const response = await axios.post("http://localhost:3000/api/users/login",data)
-      if(response.data) {
-        localStorage.setItem('user',JSON.stringify(response.data));
-        navigate('/')
-      }
-    } catch (error) {
-      if(axios.isAxiosError(error)) {
-        const message = error.response?.data?.message || 'Login failed'
-        setError('root',{message})
-      }
+  } = useForm<LoginSchema>({resolver:zodResolver(loginSchema)});
+  
+  useEffect(() => {
+    if(isError) {
+      setError('root',{message})
     }
+    if(isSuccess) {
+      navigate('/');
+    }
+    return () => {
+      dispatch(reset())
+    }
+  },[isError, isSuccess, message, navigate, dispatch, setError])
+  const onSubmit = async(data:LoginSchema) => {
+   dispatch(login(data));
   }
   const inputclasses =
     "border p-3 rounded-lg w-full outline-none focus:outline-none focus:border-cyan-800 focus:ring-0 transition";
@@ -49,8 +54,8 @@ const Login = () => {
               )}
             </div>
           ))}
-          <button type="submit" disabled={isSubmitting} className="bg-black text-white py-3 rounded font-bold hover:bg-gray-800 cursor-pointer disabled:bg-gray-400">
-            {isSubmitting ? 'logging in...' :'Login'}
+          <button type="submit" disabled={isLoading} className="bg-black text-white py-3 rounded font-bold hover:bg-gray-800 cursor-pointer disabled:bg-gray-400">
+            {isLoading ? 'logging in...' :'Login'}
           </button>
         </form>
       </div>
