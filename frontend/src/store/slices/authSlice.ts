@@ -33,30 +33,32 @@ interface BackendError {
     message:''
 }
 // for async call we need createASyncThunk
-export const register = createAsyncThunk(
-    'auth/register',
-    async(user:RegisterSchema,thunkAPI) => {
-        try {
-            return await authService.register(user);
-        } catch (error) {
-            const err = error as AxiosError<BackendError>
-            const message =err.response?.data?.message || err.message || "Something went wrong"
+export const register = createAsyncThunk<User, RegisterSchema, { rejectValue: string }>(
+  "auth/register",
+  async (userData, thunkAPI) => {
+    try {
+      return await authService.register(userData);
+    } catch (error) {
+      const err = error as AxiosError<BackendError>;
+      const message = err.response?.data?.message || err.message || "Something went wrong";
       return thunkAPI.rejectWithValue(message);
-        }
     }
-)
-export const login = createAsyncThunk(
-    'auth/login',
-    async(user:LoginSchema,thunkAPI) => {
-        try {
-            return await authService.login(user);
-        } catch (error) {
-            const err = error as AxiosError<BackendError>
-            const message =err.response?.data?.message || err.message || "Something went wrong";
-            return thunkAPI.rejectWithValue(message)
-        }
+  }
+);
+
+export const login = createAsyncThunk<User, LoginSchema, { rejectValue: string }>(
+  "auth/login",
+  async (userData, thunkAPI) => {
+    try {
+      return await authService.login(userData);
+    } catch (error) {
+      const err = error as AxiosError<BackendError>;
+      const message = err.response?.data?.message || err.message || "Something went wrong";
+      return thunkAPI.rejectWithValue(message);
     }
-)
+  }
+);
+
 export const logout = createAsyncThunk('auth/logout',async () => {
     await authService.logout();
 })
