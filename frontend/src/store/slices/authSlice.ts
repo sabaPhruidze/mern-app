@@ -18,7 +18,7 @@ interface InitialState {
     message:string
 }
 
-interface BackendError {
+export interface BackendError {
   message: string;
   stack?: string;
 }
