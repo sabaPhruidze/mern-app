@@ -48,7 +48,8 @@ export const getGoals = createAsyncThunk<Goal[],void,{rejectValue:string}>(
 export const deleteGoals = createAsyncThunk<string,string,{rejectValue:string}>( 
     "goals/delete", async (goalId, thunkAPI) => {
         try {
-            return await goalServices.deleteGoal(goalId)
+            await goalServices.deleteGoal(goalId);
+            return goalId;
         } catch (error) {
             return thunkAPI.rejectWithValue(getErrorMessage(error))
         }
@@ -84,7 +85,7 @@ export const goalSlice = createSlice({
             state.isError = true;
             state.message = action.payload as string;
         }) 
-        .addCase(getGoals.rejected,(state) => {
+        .addCase(getGoals.pending,(state) => {
             state.isLoading =  true;
         })
         .addCase(getGoals.fulfilled,(state,action) => {
