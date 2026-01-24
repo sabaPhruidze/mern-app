@@ -1,9 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-
+import Header from "./components/Header";
+import PrivateRoute from "./components/PrivateRoute";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const Header = lazy(() => import("./components/Header"));
+
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
 function App() {
@@ -19,7 +20,9 @@ function App() {
         <div>
           <Header />
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route element={<PrivateRoute/>}>
+              <Route path="/" element={<Dashboard />} />
+            </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
