@@ -3,6 +3,7 @@ import authService from "../../features/auth/authService";
 import type { RegisterSchema } from "../../schemas/register";
 import type { LoginSchema } from "../../schemas/login";
 import {AxiosError} from 'axios'
+
 export interface User {
   _id: string;
   name: string;
