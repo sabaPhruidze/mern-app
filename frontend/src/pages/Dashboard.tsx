@@ -5,6 +5,7 @@ import GoalForm from "../components/GoalForm";
 import GoalItem from "../components/GoalItem";
 import { getGoals,reset } from "../store/slices/goalSlices";
 import StatsGrid from "../constants/insights/StatsGrid";
+import TopDaysList from "../constants/insights/TopDaysList";
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -49,6 +50,7 @@ useEffect(() => {
         )}
         
         <StatsGrid/>
+        <TopDaysList/>
       </section>
     </div>
   );
