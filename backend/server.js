@@ -3,11 +3,12 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const connectDB = require("./config/db");
-
+const goalR = require('./routes/goalRoutes')
 dotenv.config();
 connectDB();
 
 // Middleware
+app.use('/api/goals',goalR)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors()); //in order to react connect
