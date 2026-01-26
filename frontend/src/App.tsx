@@ -4,9 +4,10 @@ import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-
+const Insights = lazy(() => import('./pages/Insights'))
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
+
 function App() {
   return (
     <Router>
@@ -25,6 +26,7 @@ function App() {
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/insights" element={<Insights/>}/>
           </Routes>
         </div>
       </Suspense>

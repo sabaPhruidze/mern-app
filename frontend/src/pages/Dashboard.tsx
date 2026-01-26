@@ -4,8 +4,6 @@ import { useAppSelector,useAppDispatch } from "../store/store";
 import GoalForm from "../components/GoalForm";
 import GoalItem from "../components/GoalItem";
 import { getGoals,reset } from "../store/slices/goalSlices";
-import StatsGrid from "../constants/insights/StatsGrid";
-import TopDaysList from "../constants/insights/TopDaysList";
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -48,9 +46,6 @@ useEffect(() => {
             <h3 className="text-gray-400 text-lg">No goals added yet</h3>
           </div>
         )}
-        
-        <StatsGrid/>
-        <TopDaysList/>
       </section>
     </div>
   );
