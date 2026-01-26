@@ -4,7 +4,6 @@ import { useAppSelector,useAppDispatch } from "../store/store";
 import GoalForm from "../components/GoalForm";
 import GoalItem from "../components/GoalItem";
 import { getGoals,reset } from "../store/slices/goalSlices";
-import StatsCard from "../constants/insights/statsCard";
 import StatsGrid from "../constants/insights/StatsGrid";
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -48,9 +47,7 @@ useEffect(() => {
             <h3 className="text-gray-400 text-lg">No goals added yet</h3>
           </div>
         )}
-        <div style={{maxWidth:360}}>
-          <StatsCard title="Total goals" value={12} hint="Demo card"/>
-        </div>
+        
         <StatsGrid/>
       </section>
     </div>
