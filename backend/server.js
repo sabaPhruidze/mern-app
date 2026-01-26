@@ -8,10 +8,10 @@ dotenv.config();
 connectDB();
 
 // Middleware
-app.use('/api/goals',goalR)
+app.use(cors()); //in order to react connect
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors()); //in order to react connect
+app.use('/api/goals',goalR)
 
 app.get("/", (req, res) => {
   res.send("Api is running...");

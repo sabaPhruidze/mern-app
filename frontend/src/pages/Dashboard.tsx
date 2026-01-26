@@ -10,20 +10,22 @@ const Dashboard = () => {
   const {user} = useAppSelector(state => state.auth);
   const {goals,isLoading,isError,message} = useAppSelector(state => state.goals);
   
-  useEffect((() => {
-    if(isError) {
-      console.log(message);
-    }
-    if(!user) {
-      navigate('/login');
-    }else {
-      dispatch(getGoals());
-    }
+useEffect(() => {
+  if (!user) {
+    navigate("/login");
+  } else {
+    dispatch(getGoals());
+  }
 
-    return () => {
-      dispatch(reset());
-    }
-  }),[user,navigate,isError,message,dispatch])
+  return () => {
+    dispatch(reset());
+  };
+}, [user, navigate, dispatch]);
+
+useEffect(() => {
+  if (isError) console.log(message);
+}, [isError, message]);
+
 
   if(isLoading) {
     return <div className="text-center mt-20 text-2xl animate-pulse">Loading ...</div>
