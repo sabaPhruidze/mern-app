@@ -4,6 +4,7 @@ import { useAppSelector,useAppDispatch } from "../store/store";
 import GoalForm from "../components/GoalForm";
 import GoalItem from "../components/GoalItem";
 import { getGoals,reset } from "../store/slices/goalSlices";
+import StatsCard from "../constants/insights/statsCard";
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -46,6 +47,7 @@ useEffect(() => {
             <h3 className="text-gray-400 text-lg">No goals added yet</h3>
           </div>
         )}
+        <StatsCard title="Total goals" value={12} hint="Demo card"/>
       </section>
     </div>
   );
