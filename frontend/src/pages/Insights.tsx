@@ -3,7 +3,7 @@ import StatsGrid from "../constants/insights/StatsGrid"
 import TopDaysList from "../constants/insights/TopDaysList"
 import { useAppSelector } from "../store/store"
 import type { Goal } from "../store/slices/goalSlices"
-
+import type { CardItem } from "../constants/insights/StatsGrid"
 
 const Insights = () => {
    
@@ -25,21 +25,18 @@ const Insights = () => {
         const today = byDate[todayKey] || 0
         return {total,today,topDays}
     },[goals])
+    const cards: CardItem[] = [
+            { title: "Total Goals", value: stats.total, hint: "All time" },
+            { title: "Today", value: stats.today, hint: "Created today" },
+            { title: "Top Day", value: stats.topDays[0]?.date || "-", hint: "Most active" },
+            { title: "Top Count", value: stats.topDays[0]?.count || 0, hint: "Goals in that day" },
+        ];
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
         <h1 className="text-2xl font-bold text-gray-900">Insights</h1>
         <p className="text-sm text-gray-500 mt-1">Quick analytics based on your goals. </p>
-         <StatsGrid cards={[
-        { title: "Total Goals", value: 12, hint: "All time" },
-        { title: "Today", value: 2, hint: "Created today" },
-        { title: "Last 7 Days", value: 6, hint: "Weekly activity" },
-        { title: "Top Day", value: "2026-01-26", hint: "Most active" },
-        ]} />
-        <TopDaysList items={[
-        { date: "2026-01-26", count: 4 },
-        { date: "2026-01-25", count: 3 },
-        { date: "2026-01-22", count: 2 },
-        ]} />
+          <StatsGrid cards={cards} />
+       <TopDaysList items={stats.topDays} />
     </div>
   )
 }

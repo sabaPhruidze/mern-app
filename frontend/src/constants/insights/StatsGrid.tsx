@@ -1,6 +1,6 @@
 import StatsCard from "./StatsCard";
 
-interface CardItem {
+export interface CardItem {
     title:string;
     value:string | number;
     hint:string;
