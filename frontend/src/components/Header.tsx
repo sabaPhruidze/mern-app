@@ -5,7 +5,7 @@ import { logout,reset } from "../store/slices/authSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {user} = useAppSelector((state) => state.auth);
+  const user = useAppSelector((state) => state.auth.user);
   
   const onLogout = () => {
     dispatch(logout());//remove user and token from localStorage

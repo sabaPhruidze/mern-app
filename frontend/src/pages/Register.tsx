@@ -12,7 +12,10 @@ import { useEffect } from "react";
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {isLoading,isError,isSuccess,message} = useAppSelector(state => state.auth)
+  const isLoading = useAppSelector(state => state.auth.isLoading);
+    const isError = useAppSelector(state => state.auth.isError);
+    const isSuccess = useAppSelector(state => state.auth.isSuccess)
+    const message = useAppSelector(state => state.auth.message)
   const {
     register,
     handleSubmit,

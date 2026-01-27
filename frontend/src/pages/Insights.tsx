@@ -6,7 +6,7 @@ import type { Goal } from "../store/slices/goalSlices"
 
 
 const Insights = () => {
-    const {goals} = useAppSelector((state) => state.goals)
+    const goals = useAppSelector(state => state.goals.goals)
     const stats = useMemo(() => {
         const total = goals?.length || 0;
         const byDate=(goals || []).reduce((acc:Record<string,number>,g:Goal) => {
