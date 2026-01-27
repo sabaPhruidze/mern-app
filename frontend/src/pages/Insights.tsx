@@ -6,21 +6,22 @@ import type { Goal } from "../store/slices/goalSlices"
 
 
 const Insights = () => {
+   
     const goals = useAppSelector(state => state.goals.goals)
     const stats = useMemo(() => {
-        const total = goals?.length || 0;
-        const byDate=(goals || []).reduce((acc:Record<string,number>,g:Goal) => {
-            const d= String(g.createdAt || "").slice(0,10) ||"unknown";
-            acc[d] = (acc[d] || 0) + 1;
-            return acc;
+        const total = goals?.length || 0;//retrieved number of how many we have
+        const byDate=(goals || []).reduce((acc:Record<string,number>,curr:Goal) => {
+            const d= String(curr.createdAt || "").slice(0,10) ||"unknown";//"2026-01-26T12:34:56.789Z" it will be like this and will will slice first 10 symbol
+            acc[d] = (acc[d] || 0) + 1;//d means date key here
+            return acc; // acc["2026-01-26"] = (undefined || 0) + 1 = 1 than  acc["2026-01-26"] = (1 || 0) + 1 = 2
         },{});
         const topDays = Object.entries(byDate)
-        .filter(([k]) => k !== "unknown")
+        .filter(([k]) => k !== "unknown")//key
         .sort((a,b) => b[1] -a[1])
         .slice(0,5)
         .map(([date,count]) => ({date,count}));
 
-        const todayKey = new Date().toISOString().slice(0,10);
+        const todayKey = new Date().toISOString().slice(0,10);//returns UTC time. 2026-01-26T10:20:30.000Z for example
         const today = byDate[todayKey] || 0
         return {total,today,topDays}
     },[goals])
@@ -28,8 +29,17 @@ const Insights = () => {
     <div className="max-w-6xl mx-auto px-4 py-6">
         <h1 className="text-2xl font-bold text-gray-900">Insights</h1>
         <p className="text-sm text-gray-500 mt-1">Quick analytics based on your goals. </p>
-        <StatsGrid/>
-        <TopDaysList/>
+         <StatsGrid cards={[
+        { title: "Total Goals", value: 12, hint: "All time" },
+        { title: "Today", value: 2, hint: "Created today" },
+        { title: "Last 7 Days", value: 6, hint: "Weekly activity" },
+        { title: "Top Day", value: "2026-01-26", hint: "Most active" },
+        ]} />
+        <TopDaysList items={[
+        { date: "2026-01-26", count: 4 },
+        { date: "2026-01-25", count: 3 },
+        { date: "2026-01-22", count: 2 },
+        ]} />
     </div>
   )
 }

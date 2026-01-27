@@ -2,13 +2,12 @@ type TopdayItem = {
     date:string;
     count: number;
 }
+type TopDaysListProps = {
+    items:TopdayItem[]
+}
 
-const TopDaysList = () => {
-    const items : TopdayItem[] = [
-        {date:"2026-01-26", count:4},
-        {date: "2026-01-25", count:3},
-        {date:"2026-01-22", count:2}
-    ]
+const TopDaysList = ({items}:TopDaysListProps) => {
+    
   return (
    <div className="max-w-3xl mx-auto px-4 mt-6">
     <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
