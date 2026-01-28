@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Header from "./components/Header";
+import GoalDetails from "./pages/GoalDetails";
 import PrivateRoute from "./components/PrivateRoute";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Insights = lazy(() => import('./pages/Insights'))
@@ -27,6 +28,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/insights" element={<Insights/>}/>
+            <Route path="/goals/:id" element={<GoalDetails/>}/>
           </Routes>
         </div>
       </Suspense>
