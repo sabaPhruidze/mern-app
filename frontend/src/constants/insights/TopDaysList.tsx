@@ -16,12 +16,18 @@ const TopDaysList = ({items}:TopDaysListProps) => {
             <p className="text-xs text-gray-500">Most created goals</p>
         </div>
         <div className="mt-4 space-y-3">
-            {items.map((item) => (
+            {items.length === 0 ? (
+                <div>
+                    No Data to show. Try changing filters.
+                </div>
+            ) : (
+                items.map((item) => (
                 <div key={item.count} className="flex items-center justify-between gap-4 border border-gray-100 rounded-lg px-3 py-2">
                     <p>{item.date}</p>
                     <p>{item.count}</p>
                 </div>
-            ))}
+            ))
+            )}
         </div>
     </div>
    </div>
