@@ -1,4 +1,4 @@
-import React from 'react'
+import type { RangeType } from "../../pages/Insights"
 
 const InsightsFilterBar = () => {
   return (

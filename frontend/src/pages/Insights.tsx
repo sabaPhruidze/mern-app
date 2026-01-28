@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react"
+import { useEffect, useMemo,useState } from "react"
 import StatsGrid from "../constants/insights/StatsGrid"
 import TopDaysList from "../constants/insights/TopDaysList"
 import { useAppDispatch, useAppSelector } from "../store/store"
@@ -7,11 +7,15 @@ import type { CardItem } from "../constants/insights/StatsGrid"
 import { getGoals } from "../store/slices/goalSlices"
 import { useNavigate } from "react-router-dom"
 import InsightsFilterBar from "../constants/insights/InsightsFilterBar"
+
+export type RangeType = "all" | "7d";
 const Insights = () => {
     const user = useAppSelector(state => state.auth.user)
     const goals = useAppSelector(state => state.goals.goals)
     const navigate = useNavigate();
     const dispatch= useAppDispatch();
+    const [query,setQuery] = useState<string>('');
+    const [range,setRange] = useState<RangeType>('all')
     useEffect(() => {
     if(!user ) {
     navigate('/login')
@@ -47,7 +51,12 @@ const Insights = () => {
     <div className="max-w-6xl mx-auto px-4 py-6">
         <h1 className="text-2xl font-bold text-gray-900">Insights</h1>
         <p className="text-sm text-gray-500 mt-1">Quick analytics based on your goals. </p>
-        <InsightsFilterBar/>
+        <InsightsFilterBar
+        query={query}
+        range={range}
+        onQueryChange={setQuery}
+        onRangeChange={setRange}
+        />
         <StatsGrid cards={cards} />
         <TopDaysList items={stats.topDays} />
     </div>
