@@ -6,6 +6,7 @@ import type { Goal } from "../store/slices/goalSlices"
 import type { CardItem } from "../constants/insights/StatsGrid"
 import { getGoals } from "../store/slices/goalSlices"
 import { useNavigate } from "react-router-dom"
+import InsightsFilterBar from "../constants/insights/InsightsFilterBar"
 const Insights = () => {
     const user = useAppSelector(state => state.auth.user)
     const goals = useAppSelector(state => state.goals.goals)
@@ -46,8 +47,9 @@ const Insights = () => {
     <div className="max-w-6xl mx-auto px-4 py-6">
         <h1 className="text-2xl font-bold text-gray-900">Insights</h1>
         <p className="text-sm text-gray-500 mt-1">Quick analytics based on your goals. </p>
-          <StatsGrid cards={cards} />
-       <TopDaysList items={stats.topDays} />
+        <InsightsFilterBar/>
+        <StatsGrid cards={cards} />
+        <TopDaysList items={stats.topDays} />
     </div>
   )
 }
