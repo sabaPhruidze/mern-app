@@ -41,7 +41,7 @@ useEffect(() => {
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {goals.length > 0 ? (
           goals.map((goal) => (
-            <div>
+            <div key={goal._id}>
               <GoalItem key={goal._id } goal={goal}/>
               <Link to={`/goals/${goal._id}`} className="underline">
                In order to test modal I am just temporarly putting here
