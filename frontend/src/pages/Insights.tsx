@@ -1,13 +1,24 @@
-import { useMemo } from "react"
+import { useEffect, useMemo } from "react"
 import StatsGrid from "../constants/insights/StatsGrid"
 import TopDaysList from "../constants/insights/TopDaysList"
-import { useAppSelector } from "../store/store"
+import { useAppDispatch, useAppSelector } from "../store/store"
 import type { Goal } from "../store/slices/goalSlices"
 import type { CardItem } from "../constants/insights/StatsGrid"
-
+import { getGoals } from "../store/slices/goalSlices"
+import { useNavigate } from "react-router-dom"
 const Insights = () => {
-   
+    const user = useAppSelector(state => state.auth.user)
     const goals = useAppSelector(state => state.goals.goals)
+    const navigate = useNavigate();
+    const dispatch= useAppDispatch();
+    useEffect(() => {
+    if(!user ) {
+    navigate('/login')
+    return;
+    }else {
+   dispatch(getGoals());
+    }
+    },[user,navigate,dispatch])
     const stats = useMemo(() => {
         const total = goals?.length || 0;//retrieved number of how many we have
         const byDate=(goals || []).reduce((acc:Record<string,number>,curr:Goal) => {
