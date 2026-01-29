@@ -33,6 +33,7 @@ const updateGoal = asyncHandler(async(req,res) => {
         res.status(404);
         throw new Error("Goal not found or not authorized")
     }
+     res.status(200).json(updated);
 })
 const deleteGoal = asyncHandler(async(req,res) => {
    const deleted = await Goal.findOneAndDelete({

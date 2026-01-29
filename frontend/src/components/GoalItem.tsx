@@ -14,7 +14,7 @@ interface GoalItemProps {
     <div className="bg-white border border-gray-200 p-4 rounded-lg shadow-sm flex items-start justify-between gap-4 hover:shadow-md transition">
         <div className="min-w-0">
             <p className="text-xs text-gray-400 mb-1 font-mono">{date}</p>
-            <h2 className="text-lg font-bold text-gray-800 wrap-break-words">{goal.text}</h2>
+            <h2 className="text-lg font-bold text-gray-800 break-all">{goal.text}</h2>
         </div>
         <div className="flex flex-row items-end gap-2 shrink-0">
             <Link 
