@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate ,Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector,useAppDispatch } from "../store/store";
 import GoalForm from "../components/GoalForm";
 import GoalItem from "../components/GoalItem";
@@ -41,12 +41,7 @@ useEffect(() => {
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {goals.length > 0 ? (
           goals.map((goal) => (
-            <div key={goal._id}>
               <GoalItem key={goal._id } goal={goal}/>
-              <Link to={`/goals/${goal._id}`} className="underline">
-               In order to test modal I am just temporarly putting here
-              </Link>
-            </div>
           ))
         ): (
           <div className="col-span-2 text-center py-10 bg-gray-50 rounded-lg border border-dashed border-gray-300">
