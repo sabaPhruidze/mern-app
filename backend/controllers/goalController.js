@@ -18,26 +18,32 @@ const setGoal = asyncHandler(async(req,res) => {
     })
     res.status(200).json(goal)
 });
+const updateGoal = asyncHandler(async(req,res) => {
+    const {text} = req.body;
+    if(!text) {
+        res.status(400);
+        throw new Error("Please add a text field")
+    };
+    const updated = await Goal.findOneAndUpdate(
+        {_id:req.params.id,user:req.user.id},
+        {text},
+        {new:true}
+    );
+    if(!updated) {
+        res.status(404);
+        throw new Error("Goal not found or not authorized")
+    }
+})
 const deleteGoal = asyncHandler(async(req,res) => {
-    const goal = await Goal.findById(req.params.id);
-    if(!goal) {
-        res.status(400)
-        throw new Error('Goal not found')
-    }
-    if(!req.user) {
-        res.status(401)
-        throw new Error('User not found')
-    }
-    //now will check if the real owner wants to remove it
-    // goal.user is an object
-    if(goal.user.toString() !==req.user.id) {
-        res.status(401)
-        throw new Error('User not authorized')
-    }
-    await goal.deleteOne();
-    res.status(200).json({ id: req.params.id });
+   const deleted = await Goal.findOneAndDelete({
+    _id:req.params.id,// it is much simplier and less written
+    user:req.user.id,//it asks to get goal where user is req.user.id;
+   })
+   if(!deleted) {
+    res.status(404);
+    throw new Error("Goal not found or not autorized")
+   }
+   res.status(200).json({id:req.params.id})
 })
 
-module.exports = {
-    getGoals,setGoal,deleteGoal
-}
+module.exports = { getGoals,setGoal,updateGoal,deleteGoal}
