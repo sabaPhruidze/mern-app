@@ -1,7 +1,12 @@
 import { Link,useParams } from "react-router-dom"
-import { useAppSelector } from "../store/store"
-
+import { useAppDispatch, useAppSelector } from "../store/store"
+import { useState } from "react";
+import GoalEditModal from "../components/goals/GoalEditModal";
+import { updateGoal } from "../store/slices/goalSlices";
 const GoalDetails = () => {
+    const dispatch = useAppDispatch();
+    const [openEdit,setOpenEdit] = useState<boolean>(false)
+    
     const {id} = useParams<{id:string}>();
     const goals = useAppSelector(state => state.goals.goals);
     const goal = goals.find(goal => goal._id ===id);
@@ -28,9 +33,18 @@ const GoalDetails = () => {
             <p className="text-sm text-gray-800 mt-1">{goal.createdAt.slice(0,10)}</p>
             <p className="text-sm tet-gray-500 mt-4">Text</p>
             <p className="text-base text-gray-900 mt-1 whitespace-pre-wrap">{goal.text}</p>
-            <button className="mt-6 px-3 py-2 rounded-lg text-sm border border-gray-200">Edit</button>
+            <button onClick={() => setOpenEdit(true)} className="mt-6 px-3 py-2 rounded-lg text-sm border border-gray-200">Edit</button>
         </div>
-        
+        {openEdit ? (
+        <GoalEditModal
+            initialText={goal.text}
+            onClose={() => setOpenEdit(false)}
+            onSave={(newText) => {
+            dispatch(updateGoal({ id: goal._id, data: { text: newText } }));
+            setOpenEdit(false);
+            }}
+        />
+) : null}
     </div>
   )
 }
