@@ -66,7 +66,7 @@ export const goalSlice = createSlice({
             state.isSuccess=false;
             state.isLoading=false;
             state.message='';
-        }
+        },
     },
     // updating on thunks lifecycle
     extraReducers:(builder) => {
