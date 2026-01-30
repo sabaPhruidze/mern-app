@@ -33,10 +33,11 @@ const Header = () => {
             </button>
            </li>
            <li>
-            <NavLink to="/insights" className={({isActive}) => `
-              p-2 rounded-lg border border-white/20 text-white hover:bg-white/10 ${isActive ? "bg-white/10" : ""}
-              `}
-              >
+            <NavLink to="/insights" className={({isActive}) => `flex items-center gap-2 px-3 py-3 rounded hover:bg-gray-700 ${
+        isActive ? "bg-gray-700" : ""
+      }`
+    }
+              > {/*NavLink is only is for giving active visual */}
                 <FiBarChart2/>
             </NavLink>
            </li>
