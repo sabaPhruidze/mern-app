@@ -1,4 +1,5 @@
-import { Link,useNavigate } from "react-router-dom";
+import { Link,useNavigate,NavLink } from "react-router-dom";
+import { FiBarChart2 } from "react-icons/fi";
 import { useAppSelector,useAppDispatch } from "../store/store";
 import { FaSignInAlt, FaUser } from "react-icons/fa";
 import { logout,reset } from "../store/slices/authSlice";
@@ -30,6 +31,14 @@ const Header = () => {
             <button onClick={onLogout} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition cursor-pointer">
               Logout
             </button>
+           </li>
+           <li>
+            <NavLink to="/insights" className={({isActive}) => `
+              p-2 rounded-lg border border-white/20 text-white hover:bg-white/10 ${isActive ? "bg-white/10" : ""}
+              `}
+              >
+                <FiBarChart2/>
+            </NavLink>
            </li>
            </>
          )
