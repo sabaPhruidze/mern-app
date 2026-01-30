@@ -34,7 +34,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/insights" element={<Insights/>}/>
             <Route path="/goals/:id" element={<GoalDetails/>}/>
-            
+            <Route path="*" element={<Dashboard />} />
           </Routes>
        </ErrorBoundary>
       </Suspense>
