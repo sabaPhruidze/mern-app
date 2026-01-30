@@ -1,11 +1,11 @@
 import { useEffect, useMemo,useState,useRef } from "react"
-import StatsGrid from "../constants/insights/StatsGrid"
-import TopDaysList from "../constants/insights/TopDaysList"
+import StatsGrid from "../components/insights/StatsGrid"
+import TopDaysList from "../components/insights/TopDaysList"
 import { useAppDispatch, useAppSelector } from "../store/store"
-import type { CardItem } from "../constants/insights/StatsGrid"
+import type { CardItem } from "../components/insights/StatsGrid"
 import { getGoals } from "../store/slices/goalSlices"
 import { useNavigate } from "react-router-dom"
-import InsightsFilterBar from "../constants/insights/InsightsFilterBar"
+import InsightsFilterBar from "../components/insights/InsightsFilterBar"
 
 
 export type RangeType = "all" | "7d";
