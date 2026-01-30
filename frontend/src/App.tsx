@@ -4,6 +4,8 @@ import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import GoalDetails from "./pages/GoalDetails";
 import PrivateRoute from "./components/PrivateRoute";
+import ErrorBoundary from "react-error-boundary";
+import ErrorFallback from "./components/ErrorFallback";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Insights = lazy(() => import('./pages/Insights'))
 const Login = lazy(() => import("./pages/Login"));
@@ -19,7 +21,10 @@ function App() {
           </div>
         }
       >
-        <div>
+        <ErrorBoundary
+          fallback={ErrorFallback}
+          onReset={() => window.location.assign('/')}
+        >
           <Header />
           <Routes>
             <Route element={<PrivateRoute/>}>
@@ -29,8 +34,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/insights" element={<Insights/>}/>
             <Route path="/goals/:id" element={<GoalDetails/>}/>
+            
           </Routes>
-        </div>
+       </ErrorBoundary>
       </Suspense>
     </Router>
   );
