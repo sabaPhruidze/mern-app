@@ -28,7 +28,6 @@ const Dashboard = () => {
     if (isError) console.log(message);
   }, [isError, message]);
 
-  throw new Error("Test ErrorBoundary");
   if (isLoading) {
     return (
       <div className="text-center mt-20 text-2xl animate-pulse">

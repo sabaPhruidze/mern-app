@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import type { FallbackProps } from "react-error-boundary";
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
@@ -16,16 +15,10 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
         <div className="flex gap-3 justify-center">
           <button
             onClick={resetErrorBoundary}
-            className="px-4 py-2 rounded bg-gray-900 text-white hover:bg-gray-800"
+            className="px-4 py-2 rounded bg-gray-900 text-white hover:bg-gray-800 cursor-pointer"
           >
             Try again
           </button>
-          <Link
-            to="/"
-            className="px-4 py-2 rounded border border-gray-200 hover:bg-gray-50 inline-block"
-          >
-            Go Home
-          </Link>
         </div>
       </div>
     </div>
