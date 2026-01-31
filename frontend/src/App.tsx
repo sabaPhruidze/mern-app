@@ -4,10 +4,11 @@ import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import GoalDetails from "./pages/GoalDetails";
 import PrivateRoute from "./components/PrivateRoute";
-import ErrorBoundary from "react-error-boundary";
+import { ErrorBoundary } from "react-error-boundary"; // უახლესი ვერსია გამოიყენეთ
 import ErrorFallback from "./components/ErrorFallback";
+
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const Insights = lazy(() => import('./pages/Insights'))
+const Insights = lazy(() => import("./pages/Insights"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
 
@@ -22,21 +23,20 @@ function App() {
         }
       >
         <ErrorBoundary
-          fallback={ErrorFallback}
-          onReset={() => window.location.assign('/')}
+          FallbackComponent={ErrorFallback} // ← აქ შევცვალეთ
+          onReset={() => window.location.assign("/")}
         >
           <Header />
           <Routes>
-            <Route element={<PrivateRoute/>}>
+            <Route element={<PrivateRoute />}>
               <Route path="/" element={<Dashboard />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/insights" element={<Insights/>}/>
-            <Route path="/goals/:id" element={<GoalDetails/>}/>
-            <Route path="*" element={<Dashboard />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/goals/:id" element={<GoalDetails />} />
           </Routes>
-       </ErrorBoundary>
+        </ErrorBoundary>
       </Suspense>
     </Router>
   );
