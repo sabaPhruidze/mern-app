@@ -5,39 +5,41 @@ import { registerSchema } from "../schemas/register";
 import { inputData } from "../constants/registerInputs";
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch,useAppSelector } from "../store/store";
-import {register as registerUser ,reset} from '../store/slices/authSlice'
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { register as registerUser, reset } from "../store/slices/authSlice";
 import { useEffect } from "react";
 
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(state => state.auth.isLoading);
-    const isError = useAppSelector(state => state.auth.isError);
-    const isSuccess = useAppSelector(state => state.auth.isSuccess)
-    const message = useAppSelector(state => state.auth.message)
+  const isLoading = useAppSelector((state) => state.auth.isLoading);
+  const isError = useAppSelector((state) => state.auth.isError);
+  const isSuccess = useAppSelector((state) => state.auth.isSuccess);
+  const message = useAppSelector((state) => state.auth.message);
   const {
     register,
     handleSubmit,
     setError, // for Server error
-    formState: {errors},
+    formState: { errors },
   } = useForm<RegisterSchema>({ resolver: zodResolver(registerSchema) });
   useEffect(() => {
-    if(isError) {
-      setError("root", { 
-        type: "server", 
-        message: message // ეს მოდის ბექენდიდან
+    if (isError) {
+      setError("root", {
+        type: "server",
+        message: message, // ეს მოდის ბექენდიდან
       });
     }
-    if(isSuccess) {
-      navigate('/')
+    if (isSuccess) {
+      navigate("/");
     }
-    return() => {
+    return () => {
       dispatch(reset());
-    }
-  },[isError, isSuccess, message, navigate, dispatch, setError])
-  const onSubmit = async (data: RegisterSchema) => {dispatch(registerUser(data))}
-  
+    };
+  }, [isError, isSuccess, message, navigate, dispatch, setError]);
+  const onSubmit = async (data: RegisterSchema) => {
+    dispatch(registerUser(data));
+  };
+
   const inputclasses =
     "border p-3 rounded-lg w-full outline-none focus:outline-none focus:border-cyan-800 focus:ring-0 transition";
   return (
@@ -47,15 +49,16 @@ const Register = () => {
           Registration
         </h1>
         {errors.root?.message && (
-      <p className="text-center text-red-600 mt-1 mb-6">
-    {errors.root.message}
-      </p>)}
+          <p className="text-center text-red-600 mt-1 mb-6">
+            {errors.root.message}
+          </p>
+        )}
         <p className="text-center text-gray-500 mt-1 mb-6">
           Create a new account
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           {inputData.map((item) => (
-            <div  key={item.id}>
+            <div key={`${item.id}-${item.placeholder}`}>
               <input
                 type={item.type}
                 placeholder={item.placeholder}
@@ -64,15 +67,17 @@ const Register = () => {
               />
               {errors[item.register] && (
                 <p className="text-red-500 text-sm">
-                {String(errors[item.register]?.message)}
-              </p>
+                  {String(errors[item.register]?.message)}
+                </p>
               )}
-              
             </div>
           ))}
-          <button className="bg-black text-white py-3 rounded font-bold hover:bg-gray-800 mt-2 cursor-pointer" disabled={isLoading} type="submit">
-            {isLoading ? "Loading..." : 'Register'}
-          
+          <button
+            className="bg-black text-white py-3 rounded font-bold hover:bg-gray-800 mt-2 cursor-pointer"
+            disabled={isLoading}
+            type="submit"
+          >
+            {isLoading ? "Loading..." : "Register"}
           </button>
         </form>
       </div>

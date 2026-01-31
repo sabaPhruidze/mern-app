@@ -47,7 +47,9 @@ const Dashboard = () => {
       <GoalForm />
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {goals.length > 0 ? (
-          goals.map((goal) => <GoalItem key={goal._id} goal={goal} />)
+          goals.map((goal) => (
+            <GoalItem key={`${goal._id}-${goal.createdAt}`} goal={goal} />
+          ))
         ) : (
           <div className="col-span-2 text-center py-10 bg-gray-50 rounded-lg border border-dashed border-gray-300">
             <h3 className="text-gray-400 text-lg">No goals added yet</h3>
