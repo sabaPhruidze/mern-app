@@ -1,10 +1,15 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import GoalDetails from "./pages/GoalDetails";
 import PrivateRoute from "./components/PrivateRoute";
-import { ErrorBoundary } from "react-error-boundary"; // უახლესი ვერსია გამოიყენეთ
+import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./components/ErrorFallback";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -35,6 +40,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/goals/:id" element={<GoalDetails />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </ErrorBoundary>
       </Suspense>
