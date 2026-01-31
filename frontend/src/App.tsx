@@ -35,11 +35,11 @@ function App() {
           <Routes>
             <Route element={<PrivateRoute />}>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/insights" element={<Insights />} />
+              <Route path="/goals/:id" element={<GoalDetails />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/insights" element={<Insights />} />
-            <Route path="/goals/:id" element={<GoalDetails />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </ErrorBoundary>

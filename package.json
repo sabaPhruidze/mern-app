@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@types/react": "^19.2.10",
-    "@types/react-dom": "^19.2.3",
-    "express-async-handler": "^1.2.0",
-    "react-error-boundary": "^6.1.0"
-  }
-}
