@@ -14,11 +14,13 @@ const protect = async (req, res, next) => {
       next();
     } catch (error) {
       console.log(error);
-      res.status(401).json({ message: "Is not authorized, Token is wrong" });
+      return res
+        .status(401)
+        .json({ message: "Is not authorized, Token is wrong" });
     }
   }
   if (!token) {
-    res.status(401).json({ message: "Token does not exist" });
+    return res.status(401).json({ message: "Token does not exist" });
   }
 };
 module.exports = { protect };

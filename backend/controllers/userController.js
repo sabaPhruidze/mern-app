@@ -46,12 +46,12 @@ const loginUser = async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(400).json({ message: "Password or Email is incorrect" });
+    return res.status(400).json({ message: "Password or Email is incorrect" });
   }
 };
 
 const getMe = async (req, res) => {
-  res.status(200).json(req.user);
+  return res.status(200).json(req.user);
 };
 
 module.exports = { loginUser, registerUser, getMe };
