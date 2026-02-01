@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const connectDB = require("./config/db");
 const goalR = require("./routes/goalRoutes");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 dotenv.config();
 connectDB();
 
@@ -18,6 +19,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", require("./routes/userRoutes"));
+// central error middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
