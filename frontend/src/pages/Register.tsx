@@ -5,7 +5,7 @@ import { registerSchema } from "../schemas/register";
 import { inputData } from "../constants/registerInputs";
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { register as registerUser, reset } from "../store/slices/authSlice";
 import { useEffect } from "react";
 

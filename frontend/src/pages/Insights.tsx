@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import InsightsView from "../components/insights/InsightsView";
-import { useAppDispatch, useAppSelector } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getGoals } from "../store/slices/goalSlices";
 import { useNavigate } from "react-router-dom";
 

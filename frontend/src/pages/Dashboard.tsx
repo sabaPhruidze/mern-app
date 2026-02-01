@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../store/store";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
 import GoalForm from "../components/GoalForm";
 import GoalItem from "../components/GoalItem";
 import { getGoals, reset } from "../store/slices/goalSlices";

@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { loginSchema, type LoginSchema } from "../schemas/login";
 import { loginInputs } from "../constants/loginInputs";
-import { useAppDispatch, useAppSelector } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { login, reset } from "../store/slices/authSlice";
 import { useEffect } from "react";
 const Login = () => {
