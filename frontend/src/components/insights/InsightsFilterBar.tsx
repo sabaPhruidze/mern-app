@@ -18,6 +18,7 @@ const InsightsFilterBar = ({
       <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <input
+            name="search"
             aria-label="Search"
             type="search"
             value={query}
