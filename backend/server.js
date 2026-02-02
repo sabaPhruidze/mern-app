@@ -3,7 +3,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const connectDB = require("./config/db");
-const goalR = require("./routes/goalRoutes");
+const userRoutes = require("./routes/userRoutes");
+const goalRoutes = require("./routes/goalRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 dotenv.config();
 connectDB();
@@ -17,8 +18,8 @@ app.get("/", (req, res) => {
   res.send("Api is running...");
 });
 
-app.use("/api/users", require("./routes/userRoutes"));
-app.use("/api/goals", goalR);
+app.use("/api/users", userRoutes);
+app.use("/api/goals", goalRoutes);
 // central error middlewares
 app.use(notFound);
 app.use(errorHandler);
