@@ -14,7 +14,7 @@ const InsightsFilterBar = ({
   onRangeChange,
 }: InsightsFilterBarProps) => {
   return (
-    <div className="ma-w-6xl mx-auto px-4 mt-6">
+    <div className="max-w-6xl mx-auto px-4 mt-6">
       <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <input
@@ -23,7 +23,7 @@ const InsightsFilterBar = ({
             value={query}
             onChange={(e) => onQueryChange(e.target.value)}
             placeholder="Search goals..."
-            className="w-full sm:max-w-sm border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 foucs:ring-gray-200"
+            className="w-full sm:max-w-sm border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-gray-200"
           />
           <div className="flex items-center gap-2">
             <button

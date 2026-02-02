@@ -37,7 +37,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto p5">
+    <div className="w-full max-w-4xl mx-auto p-5">
       <section className="mb-10 text-center">
         <h1 className="text-4xl font-extrabold text-gray-800 mb-2">
           Hi {user && user.name}
