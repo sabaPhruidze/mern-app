@@ -12,7 +12,6 @@ connectDB();
 app.use(cors()); //in order to react connect
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/api/goals", goalR);
 
 app.get("/", (req, res) => {
   res.send("Api is running...");
