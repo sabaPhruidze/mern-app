@@ -13,13 +13,4 @@
   .auth-input {
     @apply border p-3 rounded-lg w-full outline-none focus:outline-none focus:border-cyan-800 focus:ring-0 transition;
   }
-  .auth-error-text {
-    @apply text-red-500 text-sm mt-1;
-  }
-  .auth-error-banner {
-    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 text-sm text-center;
-  }
-  .auth-root-error {
-    @apply text-center text-red-600 mt-1 mb-6;
-  }
 }
