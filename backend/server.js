@@ -26,4 +26,4 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`http://localhost:${PORT}/api/users`));
+app.listen(PORT, () => console.log(`http://localhost:${PORT}`)); //since I will deploy this This version will be correct

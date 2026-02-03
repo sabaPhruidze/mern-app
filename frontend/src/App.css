@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+@layer components {
+  .auth-page {
+    @apply flex flex-col items-center justify-center mt-20;
+  }
+  .auth-card {
+    @apply w-full max-w-md bg-white p-8 rounded shadow-lg border border-gray-200;
+  }
+  .auth-title {
+    @apply text-center text-gray-500 mt-1 mb-6;
+  }
+  .auth-input {
+    @apply border p-3 rounded-lg w-full outline-none focus:outline-none focus:border-cyan-800 focus:ring-0 transition;
+  }
+  .auth-input--error {
+    @apply border-red-500;
+  }
+  .auth-btn {
+    @apply bg-black text-white py-3 rounded font-bold hover:bg-gray-800 cursor-pointer;
+  }
+  .auth-btn:disabled {
+    @apply bg-gray-400 cursor-not-allowed;
+  }
+  .auth-error-text {
+    @apply text-red-500 text-sm mt-1;
+  }
+  .auth-error-banner {
+    @apply bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 text-sm text-center;
+  }
+  .auth-root-error {
+    @apply text-center text-red-600 mt-1 mb-6;
+  }
+}

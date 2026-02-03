@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 const Goal = require("../models/goalModel");
-const User = require("../models/userModel"); // in order to check if user already exists or not
 
 const getGoals = asyncHandler(async (req, res) => {
   const goals = await Goal.find({ user: req.user.id });
