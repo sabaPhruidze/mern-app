@@ -34,13 +34,12 @@ const Login = () => {
   const onSubmit = async (data: LoginSchema) => {
     dispatch(login(data));
   };
-  const inputclasses =
-    "border p-3 rounded-lg w-full outline-none focus:outline-none focus:border-cyan-800 focus:ring-0 transition";
+
   return (
-    <div className="flex flex-col items-center justify-center mt-20">
-      <div className="w-full max-w-md bg-white p-8 rounded shadow-lg border border-gray-200">
+    <div className="auth-page">
+      <div className="auth-card">
         <h1 className="text-3xl font-bold text-center text-gray-800">Login</h1>
-        <p className="text-center text-gray-500 mt-1 mb-6">Welcome back!</p>
+        <p className="auth-title">Welcome back!</p>
         {errors.root && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 text-sm text-center">
             {errors.root.message}
@@ -53,12 +52,10 @@ const Login = () => {
                 type={item.type}
                 placeholder={item.placeholder}
                 {...register(item.name)}
-                className={`${inputclasses} ${errors[item.name] ? "border-red-500" : ""}`}
+                className={`auth-input ${errors[item.name] ? "border-red-500" : ""}`}
               />
               {errors[item.name] && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors[item.name]?.message}
-                </p>
+                <p className="auth-error-text">{errors[item.name]?.message}</p>
               )}
             </div>
           ))}

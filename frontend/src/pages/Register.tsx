@@ -40,11 +40,9 @@ const Register = () => {
     dispatch(registerUser(data));
   };
 
-  const inputclasses =
-    "border p-3 rounded-lg w-full outline-none focus:outline-none focus:border-cyan-800 focus:ring-0 transition";
   return (
-    <div className="flex flex-col items-center justify-center mt-20">
-      <div className="w-full max-w-md bg-white p-8 rounded shadow-lg border border-gray-200">
+    <div className="auth-page">
+      <div className="auth-card">
         <h1 className="text-3xl font-bold text-center text-gray-800">
           Registration
         </h1>
@@ -53,9 +51,7 @@ const Register = () => {
             {errors.root.message}
           </p>
         )}
-        <p className="text-center text-gray-500 mt-1 mb-6">
-          Create a new account
-        </p>
+        <p className="auth-title">Create a new account</p>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           {inputData.map((item) => (
             <div key={`${item.id}-${item.placeholder}`}>
@@ -63,10 +59,10 @@ const Register = () => {
                 type={item.type}
                 placeholder={item.placeholder}
                 {...register(item.register)}
-                className={inputclasses}
+                className={`auth-input ${errors[item.register] ? "border-red-500" : ""}`}
               />
               {errors[item.register] && (
-                <p className="text-red-500 text-sm">
+                <p className="auth-error-text">
                   {String(errors[item.register]?.message)}
                 </p>
               )}
