@@ -41,7 +41,7 @@ const Login = () => {
         <h1 className="text-3xl font-bold text-center text-gray-800">Login</h1>
         <p className="auth-title">Welcome back!</p>
         {errors.root && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 text-sm text-center">
+          <div className="bg-red-100 border border-red-400 text-red-600! px-4 py-2 rounded mb-4 text-sm text-center">
             {errors.root.message}
           </div>
         )}
