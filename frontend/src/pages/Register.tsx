@@ -69,7 +69,7 @@ const Register = () => {
             </div>
           ))}
           <button
-            className="bg-black text-white py-3 rounded font-bold hover:bg-gray-800 mt-2 cursor-pointer"
+            className="bg-black text-white py-3 rounded font-bold hover:bg-gray-800 mt-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isLoading}
             type="submit"
           >

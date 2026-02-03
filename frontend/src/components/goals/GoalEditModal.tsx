@@ -9,7 +9,12 @@ type GoalEditModalProps = {
   apiError?: string;
 };
 
-const GoalEditModal = ({ initialText, onClose, onSave,isSaving }: GoalEditModalProps) => {
+const GoalEditModal = ({
+  initialText,
+  onClose,
+  onSave,
+  isSaving,
+}: GoalEditModalProps) => {
   const [text, setText] = useState(initialText);
   const [error, setError] = useState("");
 
@@ -30,11 +35,18 @@ const GoalEditModal = ({ initialText, onClose, onSave,isSaving }: GoalEditModalP
       {error ? <p className="text-xs text-red-600 mt-2">{error}</p> : null}
 
       <div className="flex items-center justify-end gap-2 mt-4">
-        <button onClick={onClose} className="px-3 py-2 rounded-lg text-sm border border-gray-200 cursor-pointer">
+        <button
+          onClick={onClose}
+          className="px-3 py-2 rounded-lg text-sm border border-gray-200 cursor-pointer"
+        >
           Cancel
         </button>
-        <button onClick={handleSave} disabled={isSaving} className="px-3 py-2 rounded-lg text-sm bg-gray-900 text-white cursor-pointer">
-          {isSaving ? "Saving..." : 'Save'}
+        <button
+          onClick={handleSave}
+          disabled={isSaving}
+          className="px-3 py-2 rounded-lg text-sm bg-gray-900 text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isSaving ? "Saving..." : "Save"}
         </button>
       </div>
     </Modal>
