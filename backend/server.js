@@ -10,7 +10,12 @@ dotenv.config();
 connectDB();
 
 // Middleware
-app.use(cors()); //in order to react connect
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
