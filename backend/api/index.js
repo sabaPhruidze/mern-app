@@ -11,23 +11,21 @@ dotenv.config();
 
 const app = express();
 
-// middleware
-app.use(
-  cors({
-    origin: [
-      "https://mern-53pdfvbu3-sabaphruidzes-projects.vercel.app",
-      "http://localhost:3000",
-    ],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
+const corsOptions = {
+  origin: [
+    "https://mern-53pdfvbu3-sabaphruidzes-projects.vercel.app",
+    "http://localhost:3000",
+  ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
-app.options("*", cors());
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// db (serverless-შიაც მუშაობს; თუ გინდა, შემდეგ ქეშირებასაც დაგიწერ)
 connectDB();
 
 app.get("/", (req, res) => res.send("Api is running..."));
