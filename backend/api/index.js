@@ -12,7 +12,18 @@ dotenv.config();
 const app = express();
 
 // middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://mern-53pdfvbu3-sabaphruidzes-projects.vercel.app",
+      "http://localhost:3000",
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
+app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
