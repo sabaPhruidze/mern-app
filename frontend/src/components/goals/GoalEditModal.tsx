@@ -14,6 +14,7 @@ const GoalEditModal = ({
   onClose,
   onSave,
   isSaving,
+  apiError,
 }: GoalEditModalProps) => {
   const [text, setText] = useState(initialText);
   const [error, setError] = useState("");
@@ -29,11 +30,16 @@ const GoalEditModal = ({
       <label className="text-sm text-gray-700">Text</label>
       <textarea
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          setText(e.target.value);
+          if (error) setError("");
+        }}
         className="mt-2 w-full min-h-30 border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-gray-200"
       />
       {error ? <p className="text-xs text-red-600 mt-2">{error}</p> : null}
-
+      {apiError ? (
+        <p className="text-xs text-red-600 mt-2">{apiError}</p>
+      ) : null}
       <div className="flex items-center justify-end gap-2 mt-4">
         <button
           onClick={onClose}

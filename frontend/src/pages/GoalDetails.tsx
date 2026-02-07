@@ -98,7 +98,7 @@ const GoalDetails = () => {
             }
           }}
           isSaving={isLoading}
-          apiError={isError ? message : ""}
+          apiError={isError ? String(message || "Request failed") : ""}
         />
       ) : null}
     </div>
